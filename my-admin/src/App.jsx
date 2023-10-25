@@ -33,29 +33,32 @@ import {
   createRoutesFromElements,
   RouterProvider,
   Route,
+  BrowserRouter,
+  Routes,
 } from "react-router-dom";
 import RootLayout from "./Layouts/RootLayout";
-import { useState } from 'react';
 import './App.css';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Home from './Home';
+import Contact from "./Contact";
+import Login from "./Login";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
-      <Route index element={<Home />} />
-      <Route path="login" element={<Login />} />
-    </Route>
-  )
-);
-
-function App() {
+const App = () => {
   return (
-    <>
-      <Header />
-      <RouterProvider router={router} />;
-    </>
+    <div className="grid-container">
+    <Header className="header"/>
+    <BrowserRouter>
+      <Sidebar className="container"/>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+    </BrowserRouter>
+    </div>
+
   ) 
 }
 

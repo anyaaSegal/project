@@ -2,14 +2,12 @@ import React from 'react';
 import { BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill,
 BsListCheck, BsMenuButtonWideFill, BsFillGearFill } from 'react-icons/bs';
 import {
-    Nav,
-    NavLink,
-    Bars,
-    NavMenu,
-    NavBtn,
-    NavBtnLink
-} from './SidebarElements';
-
+    FaAddressBook,
+    FaBars,
+    FaLock,
+    FaTh,
+} from "react-icons/fa";
+import { NavLink } from 'react-router-dom';
 /*
 function Sidebar() {
   return (
@@ -63,31 +61,46 @@ function Sidebar() {
 
 export default Sidebar; */
 
-const Sidebar = () => {
+const Sidebar = ({children}) => {
+    const menuItem=[
+        {
+            path:"/",
+            name:"Home",
+            icon:<FaTh/>
+        },
+        {
+            path:"/contact",
+            name:"Contact",
+            icon:<FaAddressBook/>
+        },
+        {
+            path:"/login",
+            name:"Login",
+            icon:<FaLock/>
+        },
+    ];
     return (
-      <>
-        <Nav>
-          <NavLink to="/">
-            <h1> StelStay </h1>
-          </NavLink>
-          <Bars />
-          <NavMenu>
-              <NavLink to="/" activeStyle>
-                  Dashboard
-              </NavLink>
-              <NavLink to="./Contact" activeStyle>
-                  Contact
-              </NavLink>
-              <NavLink to="./Login" activeStyle>
-                  Login
-              </NavLink>
-          </NavMenu>
-          <NavBtn>
-              <NavBtnLink to="/Login"> Login </NavBtnLink>
-          </NavBtn>
-        </Nav>
-      </>
+        <div className='container'>
+            <div className='sidebar'>
+                <div className='top_section'>
+                    <h1 className='logo'> StelStay </h1>
+                    <div className='bars'>
+                        <FaBars />
+                    </div>
+                </div>
+                {
+                    menuItem.map((item, index) => (
+                        <NavLink to={item.path} key={index} className="link" activeClassName="active">
+                            <div className='icon'> {item.icon} </div>
+                            <div className='link_text'> {item.name} </div>
+                        </NavLink>
+                    )
+                    )
+                }
+            </div>
+            <main> {children} </main>
+        </div>
     );
-  };
+};
   
   export default Sidebar;
