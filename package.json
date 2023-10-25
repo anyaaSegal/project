@@ -2,6 +2,7 @@
   "dependencies": {
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.17.0",
-    "recharts": "^2.9.0"
+    "recharts": "^2.9.0",
+    "styled-components": "^6.1.0"
   }
 }
